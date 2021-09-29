@@ -1,0 +1,73 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "c:\iverilog\lib\ivl\system.vpi";
+:vpi_module "c:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "c:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "c:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "c:\iverilog\lib\ivl\va_math.vpi";
+S_000001b932042830 .scope module, "alignment" "alignment" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 5 "exp";
+    .port_info 1 /INPUT 5 "exp_max";
+    .port_info 2 /INPUT 5 "signed_pp";
+    .port_info 3 /OUTPUT 1 "aligned_pp";
+v000001b9320429c0_0 .var "aligned_pp", 0 0;
+o000001b932077008 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v000001b932042a60_0 .net "exp", 4 0, o000001b932077008;  0 drivers
+v000001b932042b00_0 .var "exp_diff", 4 0;
+o000001b932077068 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v000001b93202b7f0_0 .net "exp_max", 4 0, o000001b932077068;  0 drivers
+v000001b93202b890_0 .var "pp_shifted", 14 0;
+o000001b9320770c8 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v000001b93202b930_0 .net "signed_pp", 4 0, o000001b9320770c8;  0 drivers
+v000001b93202b9d0_0 .var "temp", 15 0;
+E_000001b932076470 .event anyedge, v000001b93202b930_0, v000001b93202b7f0_0, v000001b932042a60_0;
+    .scope S_000001b932042830;
+T_0 ;
+    %wait E_000001b932076470;
+    %load/vec4 v000001b93202b7f0_0;
+    %load/vec4 v000001b932042a60_0;
+    %sub;
+    %store/vec4 v000001b932042b00_0, 0, 5;
+    %load/vec4 v000001b93202b930_0;
+    %parti/s 4, 0, 2;
+    %concati/vec4 0, 0, 11;
+    %ix/getv 4, v000001b932042b00_0;
+    %shiftr 4;
+    %store/vec4 v000001b93202b890_0, 0, 15;
+    %load/vec4 v000001b93202b930_0;
+    %parti/s 1, 4, 4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 32768, 0, 16;
+    %store/vec4 v000001b93202b9d0_0, 0, 16;
+    %load/vec4 v000001b93202b9d0_0;
+    %load/vec4 v000001b93202b890_0;
+    %pad/u 16;
+    %sub;
+    %store/vec4 v000001b93202b9d0_0, 0, 16;
+    %load/vec4 v000001b93202b930_0;
+    %parti/s 1, 4, 4;
+    %load/vec4 v000001b93202b9d0_0;
+    %parti/s 15, 0, 2;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 1;
+    %store/vec4 v000001b9320429c0_0, 0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000001b93202b930_0;
+    %parti/s 1, 4, 4;
+    %load/vec4 v000001b93202b890_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 1;
+    %store/vec4 v000001b9320429c0_0, 0, 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    ".\alignment.v";
