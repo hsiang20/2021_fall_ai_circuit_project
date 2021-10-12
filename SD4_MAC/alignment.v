@@ -1,5 +1,6 @@
-module alignment (input [4:0] exp, exp_max, signed_pp, 
-                  output reg aligned_pp);
+module alignment (input clk, input rst
+                  input [4:0] exp, exp_max, signed_pp, 
+                  output reg [15:0] aligned_pp);
     reg [4:0] exp_diff;
     reg [14:0] pp_shifted;
     reg [15:0] temp;
