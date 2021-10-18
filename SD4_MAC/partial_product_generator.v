@@ -14,9 +14,9 @@ module partial_product_generator(input [7:0] image,
         sign = image[7] ^ weight[0];
 
         // zero detect        
-        image_zero = image[0];
-        for (i=1; i<7; i=i+1) begin
-            image_zero = image_zero ~| image[i];
+        image_zero = 1;
+        for (i=0; i<7; i=i+1) begin
+            if (image[i]) image_zero = 0;
         end
         weight_zero = weight[0] & weight[1] & weight[2];
         zero = image_zero | weight_zero;
