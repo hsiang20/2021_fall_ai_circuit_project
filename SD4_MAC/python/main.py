@@ -109,7 +109,7 @@ class MAC():
                     shift += (2**k)*int(expdiff[4-k])
                 tmp = "0"*shift + self.signedpp[i][j][1:] + "0"*11
                 tmpp = tmp[0:15]
-                if int(self.signedpp[i][0]):
+                if int(self.signedpp[i][j][0]):
                     self.alignedpp[i].append(minus2("1"+"0"*16,tmpp,17)[1:])
                 else:
                     self.alignedpp[i].append('0'+tmpp)
