@@ -1,8 +1,8 @@
-module MAC(output clk, rst, 
-           output [71:0] image, 
-           output [35:0] weight, 
-           output [4:0] exp_bias, 
-           output reg [15:0] out);
+// module MAC(output clk, rst, 
+//            output [71:0] image, 
+//            output [35:0] weight, 
+//            output [4:0] exp_bias, 
+//            output reg [15:0] out);
     
     wire [71:0] image_out;
     wire [35:0] weight_out;
@@ -84,7 +84,7 @@ module MAC(output clk, rst,
     add_nor add_nor(.clk(clk), .rst(rst), 
         .signed_sum_in(signed_sum), .exp_max_in({1'b0, exp_max_out}), .signed_sum_out(signed_sum_out), .exp_max_out(exp_max_out_out));
 
-    normalization nor(.signed_sum(signed_sum_out), .exp_max(exp_max_out_out), .sign(sign), .norm_sum(norm_sum), .exp_final(exp_final));
+    normalization normal(.signed_sum(signed_sum_out), .exp_max(exp_max_out_out), .sign(sign), .norm_sum(norm_sum), .exp_final(exp_final));
 
     nor_sub nor_sub(.clk(clk), .rst(rst), 
         .sign_in(sign), .norm_sum_in(norm_sum), .exp_final_in(exp_final), 
