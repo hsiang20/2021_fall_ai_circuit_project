@@ -1,4 +1,4 @@
-module MAC(output clk, rst, 
+daomodule MAC(output clk, rst, 
            output [71:0] image, 
            output [35:0] weight, 
            output [4:0] exp_bias, 
