@@ -1,4 +1,5 @@
 module add_nor (
+    input clk, rst, 
     input [19:0] signed_sum_in, 
     input [5:0] exp_max_in, 
     output reg [19:0] signed_sum_out, 

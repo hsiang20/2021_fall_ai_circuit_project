@@ -1,4 +1,5 @@
 module nor_sub (
+    input clk, rst, 
     input sign_in, 
     input [10:0] norm_sum_in, 
     input [6:0] exp_final_in, 
@@ -18,5 +19,5 @@ module nor_sub (
             exp_final_out <= exp_final_in;
         end
     end
-    
+
 endmodule
