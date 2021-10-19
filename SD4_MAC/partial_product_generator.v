@@ -11,7 +11,7 @@ module partial_product_generator(input [7:0] image,
     
     always @ (image or weight) begin
         // signed significant
-        sign = image[7] ^ weight[0];
+        sign = image[7] ^ weight[3];
 
         // zero detect        
         image_zero = 1;
@@ -28,7 +28,7 @@ module partial_product_generator(input [7:0] image,
         end
         else begin
             signed_pp = {sign, 1'b1, image[2:0]};
-            exp = image[6:3] + weight[3:1];
+            exp = image[6:3] + weight[2:0];
         end
     end
 
