@@ -53,14 +53,14 @@ class MAC():
             for lines in f:
                 value_list = lines.split(' ')
                 
-                if value_list[0]=="Image":
-                    self.image.append(str(value_list[-1]))
+                if value_list[0]=="image":
+                    self.image.append(str(value_list[-1][4:76]))
                     
-                elif value_list[0]=="Weight":
-                    self.weight.append(str(value_list[-1]))
+                elif value_list[0]=="weight":
+                    self.weight.append(str(value_list[-1][4:40]))
                     
-                elif value_list[0]=="Expbias":
-                    self.expbias.append(str(value_list[-1]))
+                elif value_list[0]=="exp_bias":
+                    self.expbias.append(str(value_list[-1][3:8]))
 
             self.datasize = len(self.image)
                 
@@ -145,10 +145,10 @@ class MAC():
         with open("%s" % args.output, 'w', newline='') as file_out:
             for i in range(self.datasize):
                 file_out.writelines('Input %d'% (int(i)+1))
-                file_out.writelines('\nSigned_pp %s'% self.signedpp[i][0]+' '+self.signedpp[i][1]+' '+self.signedpp[i][2]+' '+self.signedpp[i][3]+' '+self.signedpp[i][4]+self.signedpp[i][5]+self.signedpp[i][6]+self.signedpp[i][7]+self.signedpp[i][8])
-                file_out.writelines('\nExp %s'% self.exp[i][0]+' '+self.exp[i][1]+' '+self.exp[i][2]+' '+self.exp[i][3]+' '+self.exp[i][4]+self.exp[i][5]+self.exp[i][6]+self.exp[i][7]+self.exp[i][8])
+                file_out.writelines('\nSigned_pp %s'% self.signedpp[i][0]+self.signedpp[i][1]+self.signedpp[i][2]+self.signedpp[i][3]+self.signedpp[i][4]+self.signedpp[i][5]+self.signedpp[i][6]+self.signedpp[i][7]+self.signedpp[i][8])
+                file_out.writelines('\nExp %s'% self.exp[i][0]+self.exp[i][1]+self.exp[i][2]+self.exp[i][3]+self.exp[i][4]+self.exp[i][5]+self.exp[i][6]+self.exp[i][7]+self.exp[i][8])
                 file_out.writelines('\nMaxExp %s'% self.maxexp[i])
-                file_out.writelines('\nAligned_pp %s'% self.alignedpp[i][0]+' '+self.alignedpp[i][1]+' '+self.alignedpp[i][2]+' '+self.alignedpp[i][3]+' '+self.alignedpp[i][4]+self.alignedpp[i][5]+self.alignedpp[i][6]+self.alignedpp[i][7]+self.alignedpp[i][8])
+                file_out.writelines('\nAligned_pp %s'% self.alignedpp[i][0]+self.alignedpp[i][1]+self.alignedpp[i][2]+self.alignedpp[i][3]+self.alignedpp[i][4]+self.alignedpp[i][5]+self.alignedpp[i][6]+self.alignedpp[i][7]+self.alignedpp[i][8])
                 file_out.writelines('\nAdder %s'% self.adder[i])
                 file_out.writelines('\n')
                 file_out.writelines('\n')

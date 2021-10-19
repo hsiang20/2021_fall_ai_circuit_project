@@ -13,9 +13,9 @@ with open("testdata.in", 'w', newline='') as file_out:
             expbias += random.choice(['0','1'])
 
         # file_out.writelines('Input %d' % (int(i)+1))
-        file_out.writelines('\nimage = %s;' % image)
-        file_out.writelines('\nweight = %s;' % weight)
-        file_out.writelines('\nexp_bias = %s;' % expbias)
+        file_out.writelines("\nimage = 72'b%s;" % image)
+        file_out.writelines("\nweight = 36'b%s;" % weight)
+        file_out.writelines("\nexp_bias = 5'b%s;" % expbias)
         file_out.writelines('\n')
         file_out.writelines('#5')
         file_out.writelines('\n')

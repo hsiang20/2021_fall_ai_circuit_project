@@ -14,8 +14,8 @@ module MAC(output clk, rst,
     wire [4:0] exp_max;
 
     wire [4:0] pp_0_out, pp_1_out, pp_2_out, pp_3_out, pp_4_out, pp_5_out, pp_6_out, pp_7_out, pp_8_out;
-    wire [4:0] exp_0_out, exp_1_out, exp_2_out, exp_3_out, exp_4_out, exp_5_out, exp_6_out, exp_7_out, exp_8_out, 
-    wire [4:0] exp_max_out, exp_bias_out;
+    wire [4:0] exp_0_out, exp_1_out, exp_2_out, exp_3_out, exp_4_out, exp_5_out, exp_6_out, exp_7_out, exp_8_out;
+    wire [4:0] exp_max_out;
 
     wire [15:0] aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8;
     
@@ -52,9 +52,9 @@ module MAC(output clk, rst,
         .exp_max(exp_max));
 
     ppg_align ppg_align(.clk(clk), .rst(rst), 
-        .pp_0_out(pp_0), .pp_1_out(pp_1), .pp_2_out(pp_2), .pp_3_out(pp_3), .pp_4_out(pp_4), .pp_5_out(pp_5), .pp_6_out(pp_6), .pp_7_out(pp_7), .pp_8_out(pp_8), 
-        .exp_0_out(exp_0), .exp_1_out(exp_1), .exp_2_out(exp_2), .exp_3_out(exp_3), .exp_4_out(exp_4), .exp_5_out(exp_5), .exp_6_out(exp_6), .exp_7_out(exp_7), .exp_8_out(exp_8), 
-        .exp_max_out(exp_max), .exp_bias_out(exp_bias), 
+        .pp_0_in(pp_0), .pp_1_in(pp_1), .pp_2_in(pp_2), .pp_3_in(pp_3), .pp_4_in(pp_4), .pp_5_in(pp_5), .pp_6_in(pp_6), .pp_7_in(pp_7), .pp_8_in(pp_8), 
+        .exp_0_in(exp_0), .exp_1_in(exp_1), .exp_2_in(exp_2), .exp_3_in(exp_3), .exp_4_in(exp_4), .exp_5_in(exp_5), .exp_6_in(exp_6), .exp_7_in(exp_7), .exp_8_in(exp_8), 
+        .exp_max_in(exp_max), .exp_bias_in(exp_bias), 
         .pp_0_out(pp_0_out), .pp_1_out(pp_1_out), .pp_2_out(pp_2_out), .pp_3_out(pp_3_out), .pp_4_out(pp_4_out), .pp_5_out(pp_5_out), .pp_6_out(pp_6_out), .pp_7_out(pp_7_out), .pp_8_out(pp_8_out), 
         .exp_0_out(exp_0_out), .exp_1_out(exp_1_out), .exp_2_out(exp_2_out), .exp_3_out(exp_3_out), .exp_4_out(exp_4_out), .exp_5_out(exp_5_out), .exp_6_out(exp_6_out), .exp_7_out(exp_7_out), .exp_8_out(exp_8_out), 
         .exp_max_out(exp_max_out), .exp_bias_out(exp_bias_out)
