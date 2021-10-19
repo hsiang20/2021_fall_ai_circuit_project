@@ -2,7 +2,12 @@ import argparse
 import numpy as np
 import time
 
-def SD4(number):
+def count(string,target):
+    count=0
+    for i in string:
+        if i == str(target):
+            count+=1
+    return count
     pass
 def add2(a,b,digit):
     while(len(a) < int(digit)):
@@ -76,16 +81,24 @@ class MAC():
                 self.imagesplit[i].append(self.image[i][j*8:(j*8+8)])
                 self.weightsplit[i].append(self.weight[i][j*4:(j*4+4)])
                 
-                zero_weight =  self.weightsplit[i][j][1] and self.weightsplit[i][j][2] and self.weightsplit[i][j][3]
+                if count(self.weightsplit[i][j][1:4],'1') == 3:
+                    zero_weight = '1'
+                else:
+                    zero_weight = '0'
+                    
                 
-                zero_image = self.imagesplit[i][j][1]
-                for k in range(6):
-                    if zero_image == '0' and  self.imagesplit[i][j][k+2] == '0' :
-                        zero_image = '1'
-                    else:
-                        zero_image = '0'
-                        
-                zero_detect = zero_weight or zero_image
+                if count(self.imagesplit[i][j][1:8],'0') == 7:
+                    zero_image = '1'
+                else:
+                    zero_image = '0'
+                    
+                if count(zero_weight+zero_image,'0') == 2:
+                    zero_detect = '0'
+                else:
+                    zero_detect = '1'
+          
+                
+                
                 if int(zero_detect):
                     self.signedpp[i].append("00000")
                     self.exp[i].append("00000")
