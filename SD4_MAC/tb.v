@@ -18,16 +18,33 @@ module tb;
     assign aligned_pp_all = {aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8};
 
     initial begin
+        image_out = 72'b100111100000110001111010010110101110100111010011111100001000011111111001;
+        weight_out = 36'b010010000100000000111011101111101010;
+        exp_bias_out = 5'b01110;
+        #5
         image_out = 72'b100110011111100001010001011101001100100001011010100111010001011011110001;
         weight_out = 36'b101011001101101111111101100011010011;
         exp_bias_out = 5'b10001;
-        #1
-        $display("signed_pp: %b", signed_pp_all);
-        $display("exp: %b", exp_all);
-        $display("exp_max: %b", exp_max);
-        $display("aligned_pp: %b", aligned_pp_all);
-        $display("signed_sum: %b", signed_sum);
+        #5
+        image_out = 72'b110100010100001010010111100111011011000011000100100000000111001001111010;
+        weight_out = 36'b100000011011110010100011100010010010;
+        exp_bias_out = 5'b10001;
+        #5
+        image_out = 0;
+
+        // $display("signed_pp: %b, %b, %b, %b", signed_pp_all[44:40], signed_pp_all[39:35], signed_pp_all[34:30], signed_pp_all[29:0]);
+        // $display("exp: %b", exp_all);
+        // $display("exp_max: %b", exp_max);
+        // $display("aligned_pp: %b, %b, %b, %b", aligned_pp_all[143:128], aligned_pp_all[127:112], aligned_pp_all[111:96], aligned_pp_all[95:0]);
+        // $display("signed_sum: %b", signed_sum);
     end
+
+    
+    initial begin
+        $dumpfile("wave.vcd");
+        $dumpvars(0, tb);
+    end
+
 
 
     partial_product_generator ppg0(.image(image_out[71:64]), .weight(weight_out[35:32]), .signed_pp(pp_0), .exp(exp_0));
