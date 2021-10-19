@@ -38,7 +38,25 @@ def minus2(a,b,digit):
         
         ans = str(tmpp) + ans
     return ans
-
+def add2comp(complist,digit):
+    ans=[]
+    for i in complist:
+        ans.append(0)
+        for j in range(len(i)):
+            ans[-1] += (2**j)*int(i[len(i)-1-j])
+        if i[0]=='1':
+            ans[-1] = ans[-1] - (2**len(i))
+    total = sum(ans)
+    abstotal = abs(total)
+    absstring = ''
+    while (abstotal>0):
+        absstring = str(abstotal%2) + absstring
+        abstotal = abstotal // 2
+    if total > 0 :
+        return '0'*(int(digit)-len(absstring)) + absstring
+    else:
+        return minus2('1'+'0'*int(digit),absstring,int(digit)+1)[1:]
+    
 class MAC():
     def __init__(self, args):
         pass
@@ -129,16 +147,15 @@ class MAC():
     def adder(self):
         self.adder=[]
         for i in range(self.datasize):
-            tmp01 = add2(self.alignedpp[i][0],self.alignedpp[i][1],17)
-            tmp23 = add2(self.alignedpp[i][2],self.alignedpp[i][3],17)
-            tmp45 = add2(self.alignedpp[i][4],self.alignedpp[i][5],17)
-            tmp67 = add2(self.alignedpp[i][6],self.alignedpp[i][7],17)
-            tmp0123 = add2(tmp01,tmp23,18)
-            tmp4567 = add2(tmp45,tmp67,18)
-            tmp01234567 = add2(tmp0123,tmp4567,19)
-            self.adder.append(add2(tmp01234567,self.alignedpp[i][8],20))
-            
-            
+##            tmp01 = add2(self.alignedpp[i][0],self.alignedpp[i][1],17)
+##            tmp23 = add2(self.alignedpp[i][2],self.alignedpp[i][3],17)
+##            tmp45 = add2(self.alignedpp[i][4],self.alignedpp[i][5],17)
+##            tmp67 = add2(self.alignedpp[i][6],self.alignedpp[i][7],17)
+##            tmp0123 = add2(tmp01,tmp23,18)
+##            tmp4567 = add2(tmp45,tmp67,18)
+##            tmp01234567 = add2(tmp0123,tmp4567,19)
+##            self.adder.append(add2(tmp01234567,self.alignedpp[i][8],20))
+            self.adder.append(add2comp(self.alignedpp[i],20))     
             
             
     def output(self): 
