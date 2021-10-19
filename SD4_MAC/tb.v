@@ -18,7 +18,7 @@ module tb;
     wire [4:0] exp_0_out, exp_1_out, exp_2_out, exp_3_out, exp_4_out, exp_5_out, exp_6_out, exp_7_out, exp_8_out;
     wire [4:0] exp_max_out;
 
-    wire [15:0] aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8;
+    wire signed [15:0] aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8;
     wire [19:0] signed_sum;
 
     wire [15:0] aligned_pp_0_out, aligned_pp_1_out, aligned_pp_2_out, aligned_pp_3_out, aligned_pp_4_out, aligned_pp_5_out, aligned_pp_6_out, aligned_pp_7_out, aligned_pp_8_out;
@@ -73,7 +73,7 @@ module tb;
         // $display("exp: %b", exp_all);
         // $display("exp_max: %b", exp_max);
         // $display("aligned_pp: %b, %b, %b, %b", aligned_pp_all[143:128], aligned_pp_all[127:112], aligned_pp_all[111:96], aligned_pp_all[95:0]);
-        // $display("signed_sum: %b", signed_sum);
+        $display("signed_sum: %b", signed_sum);
     end
 
     
