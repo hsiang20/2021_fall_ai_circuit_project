@@ -1,7 +1,7 @@
-module MAC(output clk, rst, 
-           output [71:0] image, 
-           output [35:0] weight, 
-           output [4:0] exp_bias, 
+module MAC(input clk, rst, 
+           input [71:0] image, 
+           input [35:0] weight, 
+           input [4:0] exp_bias, 
            output reg [15:0] out);
     
     wire [71:0] image_out;
@@ -35,7 +35,7 @@ module MAC(output clk, rst,
     wire [6:0] exp_final_out;
 
 
-    input in(.clk(clk), .rst(rst), .image_in(image), .weight_in(weight), .exp_bias_in(exp_bias), 
+    input_reg in(.clk(clk), .rst(rst), .image_in(image), .weight_in(weight), .exp_bias_in(exp_bias), 
         .image_out(image_out), .weight_out(weight_out), .exp_bias_out(exp_bias_out));
 
     partial_product_generator ppg0(.image(image_out[71:64]), .weight(weight_out[35:32]), .signed_pp(pp_0), .exp(exp_0));
