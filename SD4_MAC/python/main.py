@@ -157,7 +157,69 @@ class MAC():
 ##            self.adder.append(add2(tmp01234567,self.alignedpp[i][8],20))
             self.adder.append(add2comp(self.alignedpp[i],20))     
             
-            
+    def normalization(self):
+        self.sign = []
+        self.norm_sum = []
+        self.exp_final = []
+        for i in range(self.datasize):
+            self.sign.append(self.adder[i][0])
+            if int(self.sign[i]):
+                unsign_sum = minus2('1'+'0'*19,self.adder[i][1:],20)
+            else:
+                unsign_sum = self.adder[i]
+
+            leading_one = 0
+            for i in range(1,20):
+                if int(unsign_sum[i]):
+                    leading_one = i+1
+                    break
+            if leading_one > 10 :
+                shifted_sum = unsign_sum[(leading_one-1):] + "0"*(leading_one-10)
+            else:
+                shifted_sum = unsign_sum[(leading_one-1):(leading_one+10)]
+
+            exp_diff_int = 10 - leading_one
+            exp_diff = ''
+            while(exp_diff_int>0):
+                exp_diff = str(exp_diff_int%2) + exp_diff
+                exp_diff_int = exp_diff_int // 2
+            if shifted_sum[-1] == '1':
+                temp = minus2('11111111111',shifted_sum,11)
+                if temp : #?????
+                    exp_carry = '0'
+                    shifted_sum = add2(shifted_sum , '1' , 11)
+                    self.norm_sum.append(shifted_sum[0:10]+'0')
+                else:
+                    exp_carry = '1'
+                    self.norm_sum.append('1'+'0'*10)
+            else:
+                self.norm_sum.append(shifted_sum)
+                exp_carry = '0'
+
+            exp_final = add2(self.maxexp[i],exp_diff,7)
+            exp_final = add2(exp_final,exp_carry,7)
+        
+            self.exp_final.append(exp_final)
+
+    def normalization(self):
+        self.out =[]
+        for i in range(self.datasize):
+            if self.exp_final[i][0] == '1' :
+                exp_final_unsign = minus2('1000000',self.exp_final[i][1:],7)
+                exp_final_unsign_int = 0
+                
+                for k in range(7):
+                     exp_final_unsign_int += (2**k)*int(exp_final_unsign[6-k])
+                     
+                temp = '0'* exp_final_unsign_int + self.norm_sum[i]
+                tem = temp[0:11] 
+
+                self.out.append(self.sign[i]+'00000'+tem[1:])
+            else:
+                self.out.append(self.sign[i]+self.exp_final[i][2:]+self.norm_sum[i][1:])
+                    
+                    
+        
     def output(self): 
         with open("%s" % args.output, 'w', newline='') as file_out:
             for i in range(self.datasize):
