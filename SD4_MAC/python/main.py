@@ -255,5 +255,7 @@ if __name__ == '__main__':
     mac.ppg()
     mac.alignment()
     mac.adder()
+    mac.normalization()
+    mac.subnormal()
     mac.output()
     
