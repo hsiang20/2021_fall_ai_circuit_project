@@ -201,7 +201,7 @@ class MAC():
         
             self.exp_final.append(exp_final)
 
-    def normalization(self):
+    def subnormal(self):
         self.out =[]
         for i in range(self.datasize):
             if self.exp_final[i][0] == '1' :
@@ -229,6 +229,12 @@ class MAC():
                 file_out.writelines('\nMaxExp %s'% self.maxexp[i])
                 file_out.writelines('\nAligned_pp %s'% self.alignedpp[i][0]+self.alignedpp[i][1]+self.alignedpp[i][2]+self.alignedpp[i][3]+self.alignedpp[i][4]+self.alignedpp[i][5]+self.alignedpp[i][6]+self.alignedpp[i][7]+self.alignedpp[i][8])
                 file_out.writelines('\nAdder %s'% self.adder[i])
+                
+                file_out.writelines('\nSign %s'% self.sign[i])
+                file_out.writelines('\nNorm_sum %s'% self.norm_sum[i])
+                file_out.writelines('\nExp_final %s'% self.exp_final[i])
+                file_out.writelines('\nOut %s'% self.out[i])
+                
                 file_out.writelines('\n')
                 file_out.writelines('\n')
 
