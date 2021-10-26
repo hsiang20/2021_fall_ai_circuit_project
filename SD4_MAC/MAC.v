@@ -2,7 +2,7 @@ module MAC(input clk, rst,
            input [71:0] image, 
            input [35:0] weight, 
            input [4:0] exp_bias, 
-           output reg [15:0] out);
+           output [15:0] out);
     
     wire [71:0] image_out;
     wire [35:0] weight_out;

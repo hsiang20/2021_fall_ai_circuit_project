@@ -58,7 +58,7 @@ module normalization (input signed [19:0] signed_sum,
 
         // Exponent Difference
         exp_diff = leading_one - 11;
-        $display("exp_diff: ", exp_diff);
+        // $display("exp_diff: ", exp_diff);
 
         // Round to Nearest Even
         // Q: Why Even?

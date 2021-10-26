@@ -5,8 +5,8 @@ module nor_sub (
     input [6:0] exp_final_in, 
     output reg sign_out, 
     output reg [10:0] norm_sum_out, 
-    output reg [6:0] exp_final_out, 
-);
+    output reg [6:0] exp_final_out);
+
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
             sign_out <= 0;

@@ -4,7 +4,9 @@ module img_buff (input clk, rst,
     
     reg [23:0] image1, image2, image3;
 
-    assign image_out = {image1, image2, image3};
+    always @ (*) begin
+        image_out = {image1, image2, image3};
+    end
 
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
