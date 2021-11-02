@@ -30,7 +30,7 @@ module PE_array_tb;
         #1
         rst = 1;
         
-        #20
+        #10
         img1 = 24'b1111;
         img2 = 24'b1111;
         img3 = 24'b1111;
@@ -46,7 +46,7 @@ module PE_array_tb;
         psum4 = 16'b11;
         // $display("out: %b", out);
         
-        #20
+        #10
         img1 = 24'b11111111;
         img2 = 24'b11111111;
         img3 = 24'b11111111;

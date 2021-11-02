@@ -1,3 +1,14 @@
+`include "input_reg.v"
+`include "partial_product_generator.v"
+`include "max_exponent.v"
+`include "ppg_align.v"
+`include "alignment.v"
+`include "align_add.v"
+`include "adder_tree.v"
+`include "add_nor.v"
+`include "normalization.v"
+`include "nor_sub.v"
+`include "subnormal_handling.v"
 module MAC(input clk, rst, 
            input [71:0] image, 
            input [35:0] weight, 

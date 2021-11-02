@@ -1,6 +1,7 @@
 module PE_tb;
     reg clk;
     reg rst;
+    reg en;
 
     reg [4:0] exp_bias;
     reg [23:0] image;
@@ -10,6 +11,7 @@ module PE_tb;
     wire [15:0] psum_out;
 
     initial begin
+        en = 0;
         clk = 0;
         rst = 1;
         image = 24'b0;
@@ -35,6 +37,21 @@ module PE_tb;
         psum = 16'b0000000000001111;
         $display("psum_out: %b", psum_out);
         #5
+        weight = 1;
+        #5
+        weight = 2;
+        en = 1;
+        #2
+        en = 0;
+        #3
+        weight = 36'bx;
+        #15
+        weight = 3;
+        en = 1;
+        #2
+        en = 0;
+        #3
+        weight = 36'bx;
 
         $display("psum_out: %b", psum_out);
         #100 $finish;
@@ -51,7 +68,7 @@ module PE_tb;
         clk = ~clk;
     end
 
-    PE PE1(.clk(clk), .rst(rst), 
+    PE PE1(.clk(clk), .rst(rst), .en(en), 
         .exp_bias(exp_bias), .image_in(image), .weight(weight), .psum(psum), 
         .psum_out(psum_out));
 
