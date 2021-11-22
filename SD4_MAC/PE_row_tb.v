@@ -1,6 +1,7 @@
 module PE_row_tb;
     reg clk;
     reg rst;
+    reg en;
 
     reg [4:0] exp_bias;
     reg [23:0] img1, img2, img3, img4;
@@ -12,34 +13,35 @@ module PE_row_tb;
     initial begin
         clk = 0;
         rst = 1;
-        img1 = 24'b0;
-        img2 = 24'b0;
-        img3 = 24'b0;
-        img4 = 24'b0;
-        wgt1 = 36'b0;
-        wgt2 = 36'b0;
-        wgt3 = 36'b0;
-        wgt4 = 36'b0;
+        img1 = 24'hf;
+        img2 = 24'hf;
+        img3 = 24'hf;
+        img4 = 24'hf;
+        wgt1 = 36'h1;
+        wgt2 = 36'h1;
+        wgt3 = 36'h1;
+        wgt4 = 36'h1;
         exp_bias = 5'b0;
         psum = 16'b0;
         #1
         rst = 0;
         #1
         rst = 1;
-        
+        #1
+        en = 1;
+        #2
+        en = 0;
+        wgt1 = 36'bx;
+        wgt2 = 36'bx;
+        wgt3 = 36'bx;
+        wgt4 = 36'bx;
         #10
-        img1 = 24'b1111;
-        img2 = 24'b1111;
-        img3 = 24'b1111;
-        img4 = 24'b1111;
-        wgt1 = 36'b111;
-        wgt2 = 36'b111;
-        wgt3 = 36'b111;
-        wgt4 = 36'b111;
+        img1 = 24'b111;
+        img2 = 24'b111;
+        img3 = 24'b111;
+        img4 = 24'b111;
         exp_bias = 5'b11110;
         psum = 16'b0000000000001111;
-        $display("out: %b", out);
-        
         #10
         img1 = 24'b11111111;
         img2 = 24'b11111111;
@@ -51,13 +53,16 @@ module PE_row_tb;
         wgt4 = 36'b1111111;
         exp_bias = 5'b00111;
         psum = 16'b0000000000001111;
-        $display("out: %b", out);
-        #5
+        en = 1;
+        #2
+        en = 0;
+        wgt1 = 36'bx;
+        wgt2 = 36'bx;
+        wgt3 = 36'bx;
+        wgt4 = 36'bx;
 
-        $display("out: %b", out);
         #100 $finish;
         
-        $display("out: %b", out);
     end
 
     
@@ -70,7 +75,8 @@ module PE_row_tb;
         clk = ~clk;
     end
 
-    PE_row PE_row(.clk(clk), .rst(rst), .exp_bias(exp_bias), 
+    PE_row PE_row(.clk(clk), .rst(rst), .en(en), 
+        .exp_bias(exp_bias), 
         .img1(img1), .img2(img2), .img3(img3), .img4(img4), 
         .wgt1(wgt1), .wgt2(wgt2), .wgt3(wgt3), .wgt4(wgt4), 
         .psum(psum), 

@@ -1,3 +1,4 @@
+`include "PE_row.v"
 module PE_array (input clk, rst, 
                  input [4:0] exp_bias, 
                  input [23:0] img1, img2, img3, img4, 
