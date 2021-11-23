@@ -1,17 +1,19 @@
 module max_exponent (input [4:0] exp_0, exp_1, exp_2, exp_3, exp_4, exp_5, exp_6, exp_7, exp_8,
                      output reg [4:0] exp_max);
     
-    reg [4:0] exp01, exp23, exp45, exp67, exp0123, exp4567, exp01234567;
+    reg [4:0] exp012, exp345, exp678;
     
     always @(*) begin
-        exp01 = (exp_0 > exp_1) ? exp_0 : exp_1;
-        exp23 = (exp_2 > exp_3) ? exp_2 : exp_3;
-        exp45 = (exp_4 > exp_5) ? exp_4 : exp_5;
-        exp67 = (exp_6 > exp_7) ? exp_6 : exp_7;
-        exp0123 = (exp01 > exp23) ? exp01 : exp23;
-        exp4567 = (exp45 > exp67) ? exp45 : exp67;
-        exp01234567 = (exp0123 > exp4567) ? exp0123 : exp4567;
-        exp_max = (exp01234567 > exp_8) ? exp01234567 : exp_8;
+        exp012 = (exp_0 > exp_1 && exp_0 > exp_2 ) ? exp_0 :
+                 (exp_1 > exp_2)                   ? exp_1 : exp_2;
+        exp345 = (exp_3 > exp_4 && exp_3 > exp_5 ) ? exp_3 :
+                 (exp_4 > exp_5)                   ? exp_4 : exp_5;
+        exp678 = (exp_6 > exp_7 && exp_6 > exp_8 ) ? exp_6 :
+                 (exp_7 > exp_8)                   ? exp_7 : exp_8;
+        exp_max = (exp012 > exp345 && exp012 > exp678 ) ? exp012 :
+                  (exp345 > exp678)                     ? exp345 : exp678;
     end
     
 endmodule
+
+
