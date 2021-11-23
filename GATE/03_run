@@ -1,0 +1,2 @@
+ncverilog testbed.v ipdc_syn.v tsmc13_neg.v \
+          +ncmaxdelays +define+SDF+tb1 +access+r
