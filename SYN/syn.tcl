@@ -3,7 +3,7 @@ sh mkdir -p Netlist
 sh mkdir -p Report
 
 # Import Design
-set DESIGN "alignment"
+set DESIGN "MAC"
 
 read_file -format verilog  "../SD4_MAC/$DESIGN.v"
 current_design [get_designs $DESIGN]
