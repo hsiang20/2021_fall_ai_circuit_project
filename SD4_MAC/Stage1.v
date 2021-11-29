@@ -57,17 +57,18 @@ module stage1 (
     input [71:0] image_in,
     input [35:0] weight_in, 
     input [4:0] exp_bias_in,
-    output reg [4:0] signed_pp_0, signed_pp_1, signed_pp_2, signed_pp_3, signed_pp_4, signed_pp_5, signed_pp_6, signed_pp_7, signed_pp_8, 
-    output reg [4:0] exp_0, exp_1, exp_2, exp_3, exp_4, exp_5, exp_6, exp_7, exp_8, 
-    output reg [4:0] exp_max,
+    output [4:0] signed_pp_0, signed_pp_1, signed_pp_2, signed_pp_3, signed_pp_4, signed_pp_5, signed_pp_6, signed_pp_7, signed_pp_8, 
+    output [4:0] exp_0, exp_1, exp_2, exp_3, exp_4, exp_5, exp_6, exp_7, exp_8, 
+    output [4:0] exp_max,
     output reg [4:0] exp_bias
     );
 
     reg [4:0] signed_pp_0_r, signed_pp_1_r, signed_pp_2_r, signed_pp_3_r, signed_pp_4_r, signed_pp_5_r, signed_pp_6_r, signed_pp_7_r, signed_pp_8_r;
-    reg [4:0] signed_pp_0_w, signed_pp_1_w, signed_pp_2_w, signed_pp_3_w, signed_pp_4_w, signed_pp_5_w, signed_pp_6_w, signed_pp_7_w, signed_pp_8_w;
+    wire [4:0] signed_pp_0_w, signed_pp_1_w, signed_pp_2_w, signed_pp_3_w, signed_pp_4_w, signed_pp_5_w, signed_pp_6_w, signed_pp_7_w, signed_pp_8_w;
     reg [4:0] exp_0_r, exp_1_r, exp_2_r, exp_3_r, exp_4_r, exp_5_r, exp_6_r, exp_7_r, exp_8_r;
-    reg [4:0] exp_0_w, exp_1_w, exp_2_w, exp_3_w, exp_4_w, exp_5_w, exp_6_w, exp_7_w, exp_8_w; 
-    reg [4:0] exp_max_r, exp_max_w;
+    wire [4:0] exp_0_w, exp_1_w, exp_2_w, exp_3_w, exp_4_w, exp_5_w, exp_6_w, exp_7_w, exp_8_w; 
+    reg [4:0] exp_max_r;
+    wire [4:0] exp_max_w;
 
     assign signed_pp_0 = signed_pp_0_r;
     assign signed_pp_1 = signed_pp_1_r;
@@ -101,7 +102,7 @@ module stage1 (
 
     max_exponent max_exp(.exp_0(exp_0_w), .exp_1(exp_1_w), .exp_2(exp_2_w), .exp_3(exp_3_w), .exp_4(exp_4_w),
                          .exp_5(exp_5_w), .exp_6(exp_6_w), .exp_7(exp_7_w), .exp_8(exp_8_w), .exp_max(exp_max_w));
-    always @(*) begin
+    always @(image_in or weight_in) begin
         signed_pp_0_w = signed_pp_0_r;
         signed_pp_1_w = signed_pp_1_r;
         signed_pp_2_w = signed_pp_2_r;

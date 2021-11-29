@@ -27,9 +27,10 @@ module stage5 (
     input [6:0] exp_final, 
     input sign, 
     input [10:0] norm_sum, 
-    output reg [15:0] out
+    output [15:0] out
 );
-    reg [15:0] out_r, out_w;
+    reg [15:0] out_r;
+    wire [15:0] out_w;
 
 
     assign out = out_r;

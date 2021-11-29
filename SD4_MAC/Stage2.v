@@ -20,13 +20,13 @@ module stage2 (
     input clk,
     input rst, 
     input signed [4:0] signed_pp_0, signed_pp_1, signed_pp_2, signed_pp_3, signed_pp_4, signed_pp_5, signed_pp_6, signed_pp_7, signed_pp_8,
-    input signed [44:0] exp_0, exp_1, exp_2, exp_3, exp_4, exp_5, exp_6, exp_7, exp_8,
+    input signed [4:0] exp_0, exp_1, exp_2, exp_3, exp_4, exp_5, exp_6, exp_7, exp_8,
     input signed [4:0] exp_max,
     //input [4:0] exp_bias ???
-    output reg signed [15:0] aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8
+    output signed [15:0] aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8
 );
     reg [15:0] aligned_pp_0_r, aligned_pp_1_r, aligned_pp_2_r, aligned_pp_3_r, aligned_pp_4_r, aligned_pp_5_r, aligned_pp_6_r, aligned_pp_7_r, aligned_pp_8_r;
-    reg [15:0] aligned_pp_0_w, aligned_pp_1_w, aligned_pp_2_w, aligned_pp_3_w, aligned_pp_4_w, aligned_pp_5_w, aligned_pp_6_w, aligned_pp_7_w, aligned_pp_8_w;
+    wire [15:0] aligned_pp_0_w, aligned_pp_1_w, aligned_pp_2_w, aligned_pp_3_w, aligned_pp_4_w, aligned_pp_5_w, aligned_pp_6_w, aligned_pp_7_w, aligned_pp_8_w;
  
 
     assign aligned_pp_0 = aligned_pp_0_r;
