@@ -1,5 +1,5 @@
 `include "normalization.v"
-module stage4 (
+module Stage4 (
     input clk,
     input rst, 
     input signed [19:0] signed_sum,

@@ -1,6 +1,6 @@
 
 `include "adder_tree.v"
-module stage3 (
+module Stage3 (
     input clk,
     input rst, 
     input signed [15:0] aligned_pp_0, aligned_pp_1, aligned_pp_2, aligned_pp_3, aligned_pp_4, aligned_pp_5, aligned_pp_6, aligned_pp_7, aligned_pp_8,
