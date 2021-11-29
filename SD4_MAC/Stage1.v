@@ -1,56 +1,5 @@
-module partial_product_generator(input [7:0] image, 
-                                 input [3:0] weight, 
-                                 output reg [4:0] signed_pp, 
-                                 output reg [4:0] exp);
-    
-    integer i;
-    reg sign;
-    reg image_zero;
-    reg weight_zero;
-    reg zero;
-    
-    always @ (image or weight) begin
-        // signed significant
-        sign = image[7] ^ weight[3];
-
-        // zero detect        
-        image_zero = 1;
-        for (i=0; i<7; i=i+1) begin
-            if (image[i]) image_zero = 0;
-        end
-        weight_zero = weight[0] & weight[1] & weight[2];
-        zero = image_zero | weight_zero;
-
-        // signed_pp mux and exp mux
-        if (zero) begin
-            signed_pp = 5'b0;
-            exp = 5'b0; 
-        end
-        else begin
-            signed_pp = {sign, 1'b1, image[2:0]};
-            exp = image[6:3] + weight[2:0];
-        end
-    end
-
-endmodule
-module max_exponent (input [4:0] exp_0, exp_1, exp_2, exp_3, exp_4, exp_5, exp_6, exp_7, exp_8,
-                     output reg [4:0] exp_max);
-    
-    reg [4:0] exp012, exp345, exp678;
-    
-    always @(*) begin
-        exp012 = (exp_0 > exp_1 && exp_0 > exp_2 ) ? exp_0 :
-                 (exp_1 > exp_2)                   ? exp_1 : exp_2;
-        exp345 = (exp_3 > exp_4 && exp_3 > exp_5 ) ? exp_3 :
-                 (exp_4 > exp_5)                   ? exp_4 : exp_5;
-        exp678 = (exp_6 > exp_7 && exp_6 > exp_8 ) ? exp_6 :
-                 (exp_7 > exp_8)                   ? exp_7 : exp_8;
-        exp_max = (exp012 > exp345 && exp012 > exp678 ) ? exp012 :
-                  (exp345 > exp678)                     ? exp345 : exp678;
-    end
-    
-endmodule
-
+`include "partial_product_generator.v"
+`include "max_exponent.v"
 module stage1 (
     input clk,
     input rst, 
