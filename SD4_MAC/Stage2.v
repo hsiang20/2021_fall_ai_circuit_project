@@ -49,18 +49,7 @@ module stage2 (
     alignment align7(.exp(exp_7), .exp_max(exp_max), .signed_pp(signed_pp_7), .aligned_pp(aligned_pp_7_w));
     alignment align8(.exp(exp_8), .exp_max(exp_max), .signed_pp(signed_pp_8), .aligned_pp(aligned_pp_8_w));
     
-    always @(*) begin
-        aligned_pp_0_w = aligned_pp_0_r;
-        aligned_pp_1_w = aligned_pp_1_r;
-        aligned_pp_2_w = aligned_pp_2_r;
-        aligned_pp_3_w = aligned_pp_3_r;
-        aligned_pp_4_w = aligned_pp_4_r;
-        aligned_pp_5_w = aligned_pp_5_r;
-        aligned_pp_6_w = aligned_pp_6_r;
-        aligned_pp_7_w = aligned_pp_7_r;
-        aligned_pp_8_w = aligned_pp_8_r;
-    end
-
+ 
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
             aligned_pp_0_r = 15'b0;

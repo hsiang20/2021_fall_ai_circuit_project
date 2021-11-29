@@ -102,27 +102,7 @@ module stage1 (
 
     max_exponent max_exp(.exp_0(exp_0_w), .exp_1(exp_1_w), .exp_2(exp_2_w), .exp_3(exp_3_w), .exp_4(exp_4_w),
                          .exp_5(exp_5_w), .exp_6(exp_6_w), .exp_7(exp_7_w), .exp_8(exp_8_w), .exp_max(exp_max_w));
-    always @(image_in or weight_in) begin
-        signed_pp_0_w = signed_pp_0_r;
-        signed_pp_1_w = signed_pp_1_r;
-        signed_pp_2_w = signed_pp_2_r;
-        signed_pp_3_w = signed_pp_3_r;
-        signed_pp_4_w = signed_pp_4_r;
-        signed_pp_5_w = signed_pp_5_r;
-        signed_pp_6_w = signed_pp_6_r;
-        signed_pp_7_w = signed_pp_7_r;
-        signed_pp_8_w = signed_pp_8_r;
-        exp_0_w = exp_0_r;
-        exp_1_w = exp_1_r;
-        exp_2_w = exp_2_r;
-        exp_3_w = exp_3_r;
-        exp_4_w = exp_4_r;
-        exp_5_w = exp_5_r;
-        exp_6_w = exp_6_r;
-        exp_7_w = exp_7_r;
-        exp_8_w = exp_8_r;
-        exp_max_w = exp_max_r;
-    end
+
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
             exp_bias    <= 5'b0;

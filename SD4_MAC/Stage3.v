@@ -41,9 +41,7 @@ module stage3 (
         .aligned_pp_5(aligned_pp_5), .aligned_pp_6(aligned_pp_6), .aligned_pp_7(aligned_pp_7), .aligned_pp_8(aligned_pp_8), 
         .signed_sum(signed_sum_w));
     
-    always @(*) begin
-        signed_sum_w = signed_sum_r;
-    end
+  
 
     always @(posedge clk or negedge rst) begin
         if (!rst) begin

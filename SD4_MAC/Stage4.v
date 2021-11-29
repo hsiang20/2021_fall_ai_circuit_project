@@ -109,13 +109,7 @@ module stage4 (
     assign exp_final = exp_final_r;
 
     normalization normal(.signed_sum(signed_sum), .exp_max(exp_max), .sign(sign_w), .norm_sum(norm_sum_w), .exp_final(exp_final_w));
-    
-    always @(signed_sum or exp_max) begin
-        sign_w = sign_r;
-        norm_sum_w = norm_sum_r;
-        exp_final_w = exp_final_r;
-    end
-
+  
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
             sign_r      <= 1'b0;

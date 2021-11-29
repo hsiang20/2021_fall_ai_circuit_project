@@ -37,10 +37,7 @@ module stage5 (
 
     subnormal_handling sub(.exp_final(exp_final), .sign(sign), .norm_sum(norm_sum), .out(out_w));
     
-    always @(*) begin
-       out_w = out_r;
-    end
-
+   
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
             out_r <= 16'b0;
