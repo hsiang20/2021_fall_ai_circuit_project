@@ -1,6 +1,6 @@
 
 `include "alignment.v"
-module stage2 (
+module Stage2 (
     input clk,
     input rst, 
     input signed [4:0] signed_pp_0, signed_pp_1, signed_pp_2, signed_pp_3, signed_pp_4, signed_pp_5, signed_pp_6, signed_pp_7, signed_pp_8,
