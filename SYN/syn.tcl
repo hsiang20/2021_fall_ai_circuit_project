@@ -6,13 +6,13 @@ sh mkdir -p Report
 set DESIGN "MAC"
 
 read_file -format verilog  "../SD4_MAC/$DESIGN.v"
-current_design [get_designs $DESIGN]
+current_design [get_designs ${DESIGN}]
 link
 
 source -echo -verbose ./ipdc_dc.sdc
 
 # Compile Design
-current_design [get_designs ${DESIG]
+current_design [get_designs ${DESIGN}]
 
 check_design > Report/check_design.txt
 check_timing > Report/check_timing.txt
@@ -26,6 +26,7 @@ compile
 current_design [get_designs ${DESIGN}]
 report_timing > "./Report/${DESIGN}_syn.timing"
 report_area > "./Report/${DESIGN}_syn.area"
+report_power > "./Report/${DESIGN}_syn.power"
 
 # Output Design
 current_design [get_designs ${DESIGN}]

@@ -1,6 +1,6 @@
 `include "partial_product_generator.v"
 `include "max_exponent.v"
-module stage1 (
+module Stage1 (
     input clk,
     input rst, 
     input [71:0] image_in,

@@ -4,7 +4,7 @@ module normalization (input signed [19:0] signed_sum,
                       output reg [10:0] norm_sum, 
                       output reg signed [6:0] exp_final);
     integer i;
-    reg [19:0] unsign_sum;
+    reg [19:0] unsign_sum, unsign_sum_tmp;
     reg [4:0] leading_one;
     reg [10:0] shifted_sum;
     reg signed [4:0] exp_diff;
@@ -24,13 +24,193 @@ module normalization (input signed [19:0] signed_sum,
         end
         else unsign_sum = signed_sum;
 
-        // Leading One Detector
+        // Leading One Detector 0
+        // leading_one = 0;
+        // for (i=0; i<19; i=i+1) begin
+        //     if (unsign_sum[i]) begin
+        //         leading_one = i + 1;
+        //     end
+        // end
+
+
+        // Leading One Detector 1
+        // leading_one = 0;
+        // unsign_sum_tmp = unsign_sum;
+        // for (i=0; i<19; i=i+4) begin
+        //     if (unsign_sum_tmp[3:0] != 4'b0) begin
+        //         if (unsign_sum_tmp[3]) leading_one = i + 4;
+        //         else if (unsign_sum_tmp[2]) leading_one = i + 3;
+        //         else if (unsign_sum_tmp[1]) leading_one = i + 2;
+        //         else leading_one = i + 1;
+        //     end
+        //     else begin
+        //         unsign_sum_tmp = unsign_sum_tmp >> 4;
+        //     end
+        // end
+        
+        // Leading One Detector 2
+        // leading_one = 0;
+        // if (unsign_sum[19:16] != 4'b0) begin
+        //     if (unsign_sum_tmp[19]) leading_one = 19;
+        //     else if (unsign_sum_tmp[18]) leading_one = 18;
+        //     else if (unsign_sum_tmp[17]) leading_one = 17;
+        //     else leading_one = 16;
+        // end
+        // else if (unsign_sum[15:12] != 4'b0) begin
+        //     if (unsign_sum_tmp[15]) leading_one = 15;
+        //     else if (unsign_sum_tmp[14]) leading_one = 14;
+        //     else if (unsign_sum_tmp[13]) leading_one = 13;
+        //     else leading_one = 12;
+        // end
+        // else if (unsign_sum[11:8] != 4'b0) begin
+        //         if (unsign_sum_tmp[11]) leading_one = 11;
+        //         else if (unsign_sum_tmp[10]) leading_one = 10;
+        //         else if (unsign_sum_tmp[9]) leading_one = 9;
+        //         else leading_one = 8;
+        // end
+        // else if (unsign_sum[7:4] != 4'b0) begin
+        //         if (unsign_sum_tmp[7]) leading_one = 7;
+        //         else if (unsign_sum_tmp[6]) leading_one = 6;
+        //         else if (unsign_sum_tmp[5]) leading_one = 5;
+        //         else leading_one = 4;
+        // end
+        // else begin
+        //         if (unsign_sum_tmp[3]) leading_one = 3;
+        //         else if (unsign_sum_tmp[2]) leading_one = 2;
+        //         else if (unsign_sum_tmp[1]) leading_one = 1;
+        //         else leading_one = 0;
+        // end
+        
+        // Leading One Detector 3
         leading_one = 0;
-        for (i=0; i<19; i=i+1) begin
-            if (unsign_sum[i]) begin
-                leading_one = i + 1;
-            end
+        if (unsign_sum[19:16] != 4'b0) begin
+            case (unsign_sum[19:16])
+                15 : leading_one = 19;
+                14 : leading_one = 19;
+                13 : leading_one = 19;
+                12 : leading_one = 19;
+                11 : leading_one = 19;
+                10 : leading_one = 19;
+                9  : leading_one = 19; 
+                8  : leading_one = 19;
+                7  : leading_one = 18;
+                6  : leading_one = 18;
+                5  : leading_one = 18;
+                4  : leading_one = 18;
+                3  : leading_one = 17;
+                2  : leading_one = 17;
+                1  : leading_one = 17;
+                0  : leading_one = 16;
+            endcase
         end
+        else if (unsign_sum[15:12] != 4'b0) begin
+            case (unsign_sum[15:12])
+                15 : leading_one = 15;
+                14 : leading_one = 15;
+                13 : leading_one = 15;
+                12 : leading_one = 15;
+                11 : leading_one = 15;
+                10 : leading_one = 15;
+                9  : leading_one = 15; 
+                8  : leading_one = 15;
+                7  : leading_one = 14;
+                6  : leading_one = 14;
+                5  : leading_one = 14;
+                4  : leading_one = 14;
+                3  : leading_one = 13;
+                2  : leading_one = 13;
+                1  : leading_one = 13;
+                0  : leading_one = 12;
+            endcase
+        end
+        else if (unsign_sum[11:8] != 4'b0) begin
+            case (unsign_sum[11:8])
+                15 : leading_one = 11;
+                14 : leading_one = 11;
+                13 : leading_one = 11;
+                12 : leading_one = 11;
+                11 : leading_one = 11;
+                10 : leading_one = 11;
+                9  : leading_one = 11; 
+                8  : leading_one = 11;
+                7  : leading_one = 10;
+                6  : leading_one = 10;
+                5  : leading_one = 10;
+                4  : leading_one = 10;
+                3  : leading_one = 9;
+                2  : leading_one = 9;
+                1  : leading_one = 9;
+                0  : leading_one = 8;
+            endcase
+        end
+        else if (unsign_sum[7:4] != 4'b0) begin
+            case (unsign_sum[7:4])
+                15 : leading_one = 7;
+                14 : leading_one = 7;
+                13 : leading_one = 7;
+                12 : leading_one = 7;
+                11 : leading_one = 7;
+                10 : leading_one = 7;
+                9  : leading_one = 7; 
+                8  : leading_one = 7;
+                7  : leading_one = 6;
+                6  : leading_one = 6;
+                5  : leading_one = 6;
+                4  : leading_one = 6;
+                3  : leading_one = 5;
+                2  : leading_one = 5;
+                1  : leading_one = 5;
+                0  : leading_one = 4;
+            endcase
+        end
+        else begin
+            case (unsign_sum[3:0])
+                15 : leading_one = 3;
+                14 : leading_one = 3;
+                13 : leading_one = 3;
+                12 : leading_one = 3;
+                11 : leading_one = 3;
+                10 : leading_one = 3;
+                9  : leading_one = 3; 
+                8  : leading_one = 3;
+                7  : leading_one = 2;
+                6  : leading_one = 2;
+                5  : leading_one = 2;
+                4  : leading_one = 2;
+                3  : leading_one = 1;
+                2  : leading_one = 1;
+                1  : leading_one = 1;
+                0  : leading_one = 0;
+            endcase
+        end
+
+        // leading_one = 0;
+        // unsign_sum_tmp = unsign_sum;
+        // for (i=0; i<19; i=i+4) begin
+        //     if (unsign_sum_tmp[3:0] != 4'b0) begin
+        //         case (unsign_sum_tmp[3:0])
+        //             15 : leading_one = i + 4;
+        //             14 : leading_one = i + 4;
+        //             13 : leading_one = i + 4;
+        //             12 : leading_one = i + 4;
+        //             11 : leading_one = i + 4;
+        //             10 : leading_one = i + 4;
+        //             9  : leading_one = i + 4;
+        //             8  : leading_one = i + 4;
+        //             7  : leading_one = i + 3;
+        //             6  : leading_one = i + 3;
+        //             5  : leading_one = i + 3;
+        //             4  : leading_one = i + 3;
+        //             3  : leading_one = i + 2;
+        //             2  : leading_one = i + 2;
+        //             1  : leading_one = i + 2;
+        //             0  : leading_one = i + 1;
+        //         endcase
+        //     end
+        //     else begin
+        //         unsign_sum_tmp = unsign_sum_tmp >> 4;
+        //     end
+        // end
 
         // LUT-based Shifter
         case (leading_one) 
