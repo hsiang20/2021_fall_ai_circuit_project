@@ -99,8 +99,7 @@ module normalization (input signed [19:0] signed_sum,
                 4  : leading_one = 18;
                 3  : leading_one = 17;
                 2  : leading_one = 17;
-                1  : leading_one = 17;
-                0  : leading_one = 16;
+                default: leading_one = 16;
             endcase
         end
         else if (unsign_sum[15:12] != 4'b0) begin
@@ -119,8 +118,7 @@ module normalization (input signed [19:0] signed_sum,
                 4  : leading_one = 14;
                 3  : leading_one = 13;
                 2  : leading_one = 13;
-                1  : leading_one = 13;
-                0  : leading_one = 12;
+                default: leading_one = 12;
             endcase
         end
         else if (unsign_sum[11:8] != 4'b0) begin
@@ -139,8 +137,7 @@ module normalization (input signed [19:0] signed_sum,
                 4  : leading_one = 10;
                 3  : leading_one = 9;
                 2  : leading_one = 9;
-                1  : leading_one = 9;
-                0  : leading_one = 8;
+                default leading_one = 8;
             endcase
         end
         else if (unsign_sum[7:4] != 4'b0) begin
@@ -159,8 +156,7 @@ module normalization (input signed [19:0] signed_sum,
                 4  : leading_one = 6;
                 3  : leading_one = 5;
                 2  : leading_one = 5;
-                1  : leading_one = 5;
-                0  : leading_one = 4;
+                default: leading_one = 4;
             endcase
         end
         else begin
@@ -179,38 +175,9 @@ module normalization (input signed [19:0] signed_sum,
                 4  : leading_one = 2;
                 3  : leading_one = 1;
                 2  : leading_one = 1;
-                1  : leading_one = 1;
-                0  : leading_one = 0;
+                default: leading_one = 0;
             endcase
         end
-
-        // leading_one = 0;
-        // unsign_sum_tmp = unsign_sum;
-        // for (i=0; i<19; i=i+4) begin
-        //     if (unsign_sum_tmp[3:0] != 4'b0) begin
-        //         case (unsign_sum_tmp[3:0])
-        //             15 : leading_one = i + 4;
-        //             14 : leading_one = i + 4;
-        //             13 : leading_one = i + 4;
-        //             12 : leading_one = i + 4;
-        //             11 : leading_one = i + 4;
-        //             10 : leading_one = i + 4;
-        //             9  : leading_one = i + 4;
-        //             8  : leading_one = i + 4;
-        //             7  : leading_one = i + 3;
-        //             6  : leading_one = i + 3;
-        //             5  : leading_one = i + 3;
-        //             4  : leading_one = i + 3;
-        //             3  : leading_one = i + 2;
-        //             2  : leading_one = i + 2;
-        //             1  : leading_one = i + 2;
-        //             0  : leading_one = i + 1;
-        //         endcase
-        //     end
-        //     else begin
-        //         unsign_sum_tmp = unsign_sum_tmp >> 4;
-        //     end
-        // end
 
         // LUT-based Shifter
         case (leading_one) 
