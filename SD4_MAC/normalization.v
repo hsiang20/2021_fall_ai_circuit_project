@@ -51,34 +51,34 @@ module normalization (input signed [19:0] signed_sum,
         // Leading One Detector 2
         leading_one = 0;
         if (unsign_sum[19:16] != 4'b0) begin
-            if (unsign_sum_tmp[19]) leading_one = 19;
-            else if (unsign_sum_tmp[18]) leading_one = 18;
-            else if (unsign_sum_tmp[17]) leading_one = 17;
+            if (unsign_sum[19]) leading_one = 19;
+            else if (unsign_sum[18]) leading_one = 18;
+            else if (unsign_sum[17]) leading_one = 17;
             else leading_one = 16;
         end
         else if (unsign_sum[15:12] != 4'b0) begin
-            if (unsign_sum_tmp[15]) leading_one = 15;
-            else if (unsign_sum_tmp[14]) leading_one = 14;
-            else if (unsign_sum_tmp[13]) leading_one = 13;
+            if (unsign_sum[15]) leading_one = 15;
+            else if (unsign_sum[14]) leading_one = 14;
+            else if (unsign_sum[13]) leading_one = 13;
             else leading_one = 12;
         end
         else if (unsign_sum[11:8] != 4'b0) begin
-                if (unsign_sum_tmp[11]) leading_one = 11;
-                else if (unsign_sum_tmp[10]) leading_one = 10;
-                else if (unsign_sum_tmp[9]) leading_one = 9;
-                else leading_one = 8;
+            if (unsign_sum[11]) leading_one = 11;
+            else if (unsign_sum[10]) leading_one = 10;
+            else if (unsign_sum[9]) leading_one = 9;
+            else leading_one = 8;
         end
         else if (unsign_sum[7:4] != 4'b0) begin
-                if (unsign_sum_tmp[7]) leading_one = 7;
-                else if (unsign_sum_tmp[6]) leading_one = 6;
-                else if (unsign_sum_tmp[5]) leading_one = 5;
-                else leading_one = 4;
+            if (unsign_sum[7]) leading_one = 7;
+            else if (unsign_sum[6]) leading_one = 6;
+            else if (unsign_sum[5]) leading_one = 5;
+            else leading_one = 4;
         end
         else begin
-                if (unsign_sum_tmp[3]) leading_one = 3;
-                else if (unsign_sum_tmp[2]) leading_one = 2;
-                else if (unsign_sum_tmp[1]) leading_one = 1;
-                else leading_one = 0;
+            if (unsign_sum[3]) leading_one = 3;
+            else if (unsign_sum[2]) leading_one = 2;
+            else if (unsign_sum[1]) leading_one = 1;
+            else leading_one = 0;
         end
         
         // Leading One Detector 3
