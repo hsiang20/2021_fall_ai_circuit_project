@@ -17,12 +17,15 @@ module normalization (input signed [19:0] signed_sum,
         sign = signed_sum[19];
 
         // Unsign
-        if (sign) begin
-            temp = 20'b10000000000000000000;
-            temp = temp - signed_sum[18:0];
-            unsign_sum = temp;
-        end
-        else unsign_sum = signed_sum;
+        //if (sign) begin
+        //   temp = 20'b10000000000000000000;
+        //    temp = temp - signed_sum[18:0];
+        //    unsign_sum = temp;
+        //end
+        //else unsign_sum = signed_sum;
+
+        unsign_sum = (sign)? 20'b10000000000000000000 - signed_sum[18:0] : signed_sum;
+        //unsign_sum = (sign)? ~signed_sum[18:0] + 1'b1 : signed_sum;
 
         // Leading One Detector 0
         // leading_one = 0;
