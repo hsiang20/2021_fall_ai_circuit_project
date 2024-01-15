@@ -4,7 +4,4 @@
 We follow the instruction of the paper: 
 **"A Multiplier-less Convolutional Neural Network Inference Accelerator for Intelligent Edge Devices"**
 to design the SD4 MAC.
-### Partial Product Generator
-### Alignment
-### Normalization
-### Subnormal Handling
+
